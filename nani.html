@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Search by Nani</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom loader animation */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Apply smooth transition to input and button */
+        .input-box,
+        .search-btn {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .input-box:focus,
+        .search-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans transition-all duration-300">
+
+    <div class="container mx-auto p-6">
+        <!-- Main Heading -->
+        <h1 class="text-4xl font-bold text-center mb-8 text-blue-400 animate__animated animate__fadeInUp">Search Engine by <span class="text-pink-500">Nani</span></h1>
+        
+        <!-- Search Box -->
+        <div class="flex justify-center mb-8 animate__animated animate__fadeIn">
+            <input 
+                id="search-input" 
+                type="text" 
+                class="input-box w-3/4 p-4 border border-gray-600 rounded-lg bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                placeholder="Enter your search..." 
+                required 
+            />
+            <button 
+                id="search-btn" 
+                class="search-btn ml-4 bg-gradient-to-r from-pink-500 via-blue-500 to-indigo-600 text-white px-6 py-4 rounded-lg hover:bg-gradient-to-l hover:scale-105 transition-all duration-300"
+            >
+                Search
+            </button>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div id="loading" class="hidden text-center">
+            <svg class="animate-spin h-16 w-16 text-pink-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+            </svg>
+            <p class="text-gray-500 mt-4">Fetching results...</p>
+        </div>
+
+        <!-- Search Results -->
+        <div id="results" class="hidden bg-gray-800 p-6 rounded-lg shadow-lg space-y-4 mt-8 animate__animated animate__fadeIn">
+            <h2 class="text-3xl font-semibold text-pink-400 mb-6">Search Results</h2>
+            <div id="results-container">
+                <!-- Results will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const apiKey = "AIzaSyCYk7iP7CYuFh6YQq9Q1RkTFfuM-H3odIw"; // Your API key
+        const cx = "0040a06e884744145"; // Your Search Engine ID
+
+        document.getElementById('search-btn').addEventListener('click', () => {
+            const query = document.getElementById('search-input').value.trim();
+            if (!query) {
+                alert("Please enter a search query!");
+                return;
+            }
+
+            // Show loading spinner
+            document.getElementById('loading').classList.remove('hidden');
+            document.getElementById('results').classList.add('hidden');
+
+            // Fetch results from Google Custom Search API
+            fetch(`https://www.googleapis.com/customsearch/v1?q=${query}&key=${apiKey}&cx=${cx}`)
+                .then(response => response.json())
+                .then(data => {
+                    const resultsContainer = document.getElementById('results-container');
+                    resultsContainer.innerHTML = ""; // Clear previous results
+
+                    if (data.items) {
+                        // Display results
+                        data.items.forEach(item => {
+                            const resultDiv = document.createElement("div");
+                            resultDiv.classList.add("border", "border-gray-600", "p-6", "rounded-lg", "hover:bg-gray-700", "transition-colors", "duration-300");
+
+                            resultDiv.innerHTML = `
+                                <a href="${item.link}" class="text-blue-400 text-xl font-semibold hover:underline" target="_blank">${item.title}</a>
+                                <p class="text-gray-400">${item.snippet}</p>
+                            `;
+                            resultsContainer.appendChild(resultDiv);
+                        });
+
+                        document.getElementById('loading').classList.add('hidden');
+                        document.getElementById('results').classList.remove('hidden');
+                    } else {
+                        // No results found
+                        document.getElementById('loading').classList.add('hidden');
+                        document.getElementById('results').classList.remove('hidden');
+                        resultsContainer.innerHTML = "<p class='text-red-500 text-center'>No results found.</p>";
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching results:", error);
+                    document.getElementById('loading').classList.add('hidden');
+                    document.getElementById('results').classList.remove('hidden');
+                    document.getElementById('results-container').innerHTML = "<p class='text-red-500 text-center'>Failed to fetch results. Please try again later.</p>";
+                });
+        });
+    </script>
+</body>
+</html>
