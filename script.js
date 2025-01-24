@@ -38,13 +38,13 @@ document.getElementById('search-btn').addEventListener('click', () => {
                 // No results found
                 document.getElementById('loading').classList.add('hidden');
                 document.getElementById('results').classList.remove('hidden');
-                resultsContainer.innerHTML = "<p class='text-red-500 text-center'>No results found.</p>";
+                resultsContainer.innerHTML = "<p class='text-center' style='color: #f48c42;'>No results found.</p>"; // Updated for dark mode design
             }
         })
         .catch(error => {
             console.error("Error fetching results:", error);
             document.getElementById('loading').classList.add('hidden');
             document.getElementById('results').classList.remove('hidden');
-            document.getElementById('results-container').innerHTML = "<p class='text-red-500 text-center'>Failed to fetch results. Please try again later.</p>";
+            document.getElementById('results-container').innerHTML = "<p class='text-center' style='color: #f48c42;'>Failed to fetch results. Please try again later.</p>"; // Updated for error styling
         });
 });
