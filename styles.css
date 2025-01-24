@@ -17,12 +17,12 @@ body {
     text-align: center;
     font-size: 36px;
     margin-bottom: 40px;
-    color: #4f88d1; /* Soft blue for highlights */
+    color: #9b4dca; /* Dark violet for heading */
     animation: fadeIn 1s ease-in;
 }
 
 .highlight {
-    color: #f48c42; /* Amber for emphasis */
+    color: #e25a9d; /* Soft vibrant pink for emphasis */
 }
 
 .search-box {
@@ -44,14 +44,14 @@ body {
 }
 
 .input-box:focus {
-    border-color: #f48c42; /* Amber focus state */
+    border-color: #e25a9d; /* Pink focus state */
     background-color: #333; /* Slightly lighter dark on focus */
 }
 
 .search-btn {
     padding: 15px 30px;
     margin-left: 10px;
-    background-color: #f48c42; /* Warm amber */
+    background-color: #9b4dca; /* Dark violet */
     color: white;
     border: none;
     border-radius: 8px;
@@ -61,7 +61,7 @@ body {
 }
 
 .search-btn:hover {
-    background-color: #4f88d1; /* Blue on hover */
+    background-color: #e25a9d; /* Soft pink on hover */
     transform: scale(1.05);
 }
 
@@ -73,10 +73,10 @@ body {
     width: 50px;
     height: 50px;
     margin: 20px auto;
-    border: 5px solid #444; /* Dark border for loader */
-    border-top: 5px solid #f48c42; /* Amber top for contrast */
+    border: 5px solid transparent;
+    border-top: 5px solid #9b4dca; /* Dark violet color for the loader */
     border-radius: 50%;
-    animation: spin 2s infinite linear;
+    animation: pulse 1.5s infinite ease-in-out;
 }
 
 .loading-text {
@@ -93,7 +93,7 @@ body {
 
 .results-heading {
     font-size: 24px;
-    color: #f48c42; /* Amber heading */
+    color: #e25a9d; /* Soft pink heading */
     margin-bottom: 20px;
 }
 
@@ -112,7 +112,7 @@ body {
 }
 
 .result-item a {
-    color: #4f88d1; /* Soft blue for links */
+    color: #9b4dca; /* Dark violet for links */
     font-size: 18px;
     font-weight: bold;
     text-decoration: none;
@@ -136,7 +136,17 @@ body {
     100% { opacity: 1; }
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+@keyframes pulse {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.9);
+        opacity: 0.5;
+    }
 }
