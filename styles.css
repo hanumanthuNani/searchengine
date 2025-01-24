@@ -1,8 +1,8 @@
 /* General styling */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #1e1e1e;
-    color: white;
+    background-color: #121212; /* Darker background */
+    color: #e0e0e0; /* Lighter text for contrast */
     margin: 0;
     padding: 0;
 }
@@ -17,12 +17,12 @@ body {
     text-align: center;
     font-size: 36px;
     margin-bottom: 40px;
-    color: #4f88d1;
+    color: #4f88d1; /* Soft blue for highlights */
     animation: fadeIn 1s ease-in;
 }
 
 .highlight {
-    color: #f48c42;
+    color: #f48c42; /* Amber for emphasis */
 }
 
 .search-box {
@@ -35,31 +35,33 @@ body {
 .input-box {
     width: 60%;
     padding: 15px;
-    border: 2px solid #ccc;
+    border: 2px solid #444; /* Dark border for depth */
     border-radius: 8px;
-    background-color: #333;
-    color: white;
+    background-color: #2a2a2a; /* Darker input field */
+    color: #e0e0e0; /* Light text */
     outline: none;
     transition: all 0.3s ease;
 }
 
 .input-box:focus {
-    border-color: #f48c42;
+    border-color: #f48c42; /* Amber focus state */
+    background-color: #333; /* Slightly lighter dark on focus */
 }
 
 .search-btn {
     padding: 15px 30px;
     margin-left: 10px;
-    background-color: #f48c42;
+    background-color: #f48c42; /* Warm amber */
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
 }
 
 .search-btn:hover {
-    background-color: #4f88d1;
+    background-color: #4f88d1; /* Blue on hover */
     transform: scale(1.05);
 }
 
@@ -71,42 +73,46 @@ body {
     width: 50px;
     height: 50px;
     margin: 20px auto;
+    border: 5px solid #444; /* Dark border for loader */
+    border-top: 5px solid #f48c42; /* Amber top for contrast */
+    border-radius: 50%;
     animation: spin 2s infinite linear;
 }
 
 .loading-text {
     font-size: 18px;
-    color: #ccc;
+    color: #ccc; /* Light gray text for loading */
 }
 
 .results {
-    background-color: #333;
+    background-color: #333; /* Dark background for results */
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Darker shadow for depth */
 }
 
 .results-heading {
     font-size: 24px;
-    color: #f48c42;
+    color: #f48c42; /* Amber heading */
     margin-bottom: 20px;
 }
 
 .result-item {
     margin-bottom: 20px;
     padding: 15px;
-    background-color: #444;
+    background-color: #444; /* Slightly lighter dark background */
     border-radius: 8px;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
 }
 
 .result-item:hover {
-    background-color: #555;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    background-color: #555; /* Lighten on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
 }
 
 .result-item a {
-    color: #4f88d1;
+    color: #4f88d1; /* Soft blue for links */
     font-size: 18px;
     font-weight: bold;
     text-decoration: none;
@@ -117,7 +123,7 @@ body {
 }
 
 .result-item p {
-    color: #ccc;
+    color: #ccc; /* Light gray for result descriptions */
     font-size: 14px;
 }
 
